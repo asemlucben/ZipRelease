@@ -40,7 +40,7 @@ jobs:
           # Tool to use for archiving
           type: 'zip'
           # Filename for archive
-          filename: SalesAndApplicationShared-${{ steps.extract_branch.outputs.branch }}.zip
+          filename: Release-${{ steps.extract_branch.outputs.branch }}.zip
           # Base path for archive files
           #path: .
           # Working directory before zipping
@@ -70,7 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.current-time.outputs.formattedTime }}
-          release_name: Release ${{ steps.current-time.outputs.formattedTime }} - QStudio ${{ steps.extract_branch.outputs.branch }}
+          release_name: Release date: ${{ steps.current-time.outputs.formattedTime }} - Branch: ${{ steps.extract_branch.outputs.branch }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -80,6 +80,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./SalesAndApplicationShared-${{ steps.extract_branch.outputs.branch }}.zip
-          asset_name: SalesAndApplicationShared-${{ steps.extract_branch.outputs.branch }}.zip
+          asset_path: ./Release-${{ steps.extract_branch.outputs.branch }}.zip
+          asset_name: Release-${{ steps.extract_branch.outputs.branch }}.zip
           asset_content_type: application/zip
