@@ -2,6 +2,5 @@
 ZIP file release for GIT
 
 # Usage
-Place this file in 
-
-\.github\workflows
+1. Place this file in `\.github\workflows`
+2. Configure triggers if needed
